@@ -1,27 +1,21 @@
-{
+{#container Definition similar to Dockercompose.yml
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
-        {
-            "name": "mysql-server",
-            "image": "mysql:5.7",
-            "hostname": "mysql-server",
-            "environment": [
-                {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "value": "password"
-                },
-                {
-                    "name": "MYSQL_DATABASE",
-                    "value": "logindb"
-                }
-            ],
-            "memory": 500,
-            "essential": true
-        },
-        {
-            "name": "loginapp",
-            "image": "softwarebhayya/loginapp",
-            "environment": [
+          {
+              "name": "loginapp",
+              # link of sam_loginapp to mysql -server
+              "links":[
+                "mysql-server"
+               ],
+              "image": "samrika26/loginapp",
+              "essential": false, #what happen if service is down do u want to kill all container
+              "portMappings":[
+                                {
+                                     "containerPort": 8888,
+                                     "hostPort": 80
+                                }
+              ],
+               "environment": [
                 {
                     "name": "MSHOST",
                     "value": "mysql-server"
@@ -39,6 +33,10 @@
                     "value": "password"
                 },
                 {
+                    "name": "SERVERPORT",
+                    "value": "8888"
+                },
+                {
                     "name": "WAIT_HOSTS",
                     "value": "mysql-server:3306"
                 },
@@ -47,11 +45,30 @@
                     "value": "90"
                 }
             ],
-            "links": [
-                "mysql-server"
+            "memory": 500,
+           
+
+
+          },
+  
+        {
+           
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "password"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "logindb"
+                }
             ],
-            "memory": 128,
-            "essential": false
+             "name": "mysql-server",
+             "image": "mysql:5.7",
+             "hostname": "mysql-server",
+            "memory": 500,
+            "essential": true
         }
+        
     ]
 }
