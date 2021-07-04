@@ -12,6 +12,6 @@ script:
 after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-    - docker push smrika26/sam_loginapp
+    - docker push samrika26/sam_loginapp
 
 
