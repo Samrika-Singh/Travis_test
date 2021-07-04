@@ -24,6 +24,9 @@ deploy:
     
     on:
        all_branches: true
+    env:
+      - MYSQL_ROOT_PASSWORD: password 
+      - MYSQL_DATABASE: logindb
     access_key-id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     
