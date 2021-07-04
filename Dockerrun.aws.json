@@ -1,20 +1,27 @@
 {
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
-          {
-              "name": "loginapp",
-              "links":[
-                "mysql-server"
-               ],
-              "image": "samrika26/loginapp",
-              "essential": false, 
-              "portMappings":[
-                                {
-                                     "containerPort": 8888,
-                                     "hostPort": 80
-                                }
-              ],
-               "environment": [
+        {
+            "name": "mysql-server",
+            "image": "mysql:5.7",
+            "hostname": "mysql-server",
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "password"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "logindb"
+                }
+            ],
+            "memory": 500,
+            "essential": true
+        },
+        {
+            "name": "loginapp",
+            "image": "samrika26/loginapp",
+            "environment": [
                 {
                     "name": "MSHOST",
                     "value": "mysql-server"
@@ -32,10 +39,6 @@
                     "value": "password"
                 },
                 {
-                    "name": "SERVERPORT",
-                    "value": "8888"
-                },
-                {
                     "name": "WAIT_HOSTS",
                     "value": "mysql-server:3306"
                 },
@@ -44,30 +47,11 @@
                     "value": "90"
                 }
             ],
-            "memory": 500,
-           
-
-
-       },
-  
-        {
-           
-            "environment": [
-                {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "value": "password"
-                },
-                {
-                    "name": "MYSQL_DATABASE",
-                    "value": "logindb"
-                }
+            "links": [
+                "mysql-server"
             ],
-             "name": "mysql-server",
-             "image": "mysql:5.7",
-             "hostname": "mysql-server",
-            "memory": 500,
-            "essential": true
+            "memory": 128,
+            "essential": false
         }
-        
     ]
 }
