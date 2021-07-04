@@ -7,7 +7,7 @@ before_install:
     - docker build -t samrika26/sam_loginapp .
 
 script:
-    - docker run softwarebhayya/sam_loginapp npm test
+    - docker run samrika26/sam_loginapp npm test
 
 after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
