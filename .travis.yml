@@ -4,14 +4,25 @@ services:
     - docker
 
 before_install:
-    - docker build -t samrika26/sam_loginapp .
+    - docker build -t samrika26/loginapp .
 
 script:
-    - docker run samrika26/sam_loginapp npm test
+    - docker run samrika26/loginapp npm test
 
 after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-    - docker push samrika26/sam_loginapp
+    - docker push samrika26/loginapp
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: docker-loginapp
+    bucket_name: elasticbeanstalk-us-east-2-820692509400
+    bucket_path: docker-loginapp
+    on: 
+       branch: master
+    access_key-id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
 
 
