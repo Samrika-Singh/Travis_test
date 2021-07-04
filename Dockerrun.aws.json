@@ -1,4 +1,4 @@
-{#container Definition similar to Dockercompose.yml
+{# container Definition similar to Dockercompose.yml
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
           {
@@ -8,7 +8,7 @@
                 "mysql-server"
                ],
               "image": "samrika26/loginapp",
-              "essential": false, #what happen if service is down do u want to kill all container
+              "essential": false, # what happen if service is down do u want to kill all container
               "portMappings":[
                                 {
                                      "containerPort": 8888,
