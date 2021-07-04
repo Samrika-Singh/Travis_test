@@ -19,10 +19,11 @@ deploy:
     region: us-east-2
     app: docker-loginapp
     bucket_name: elasticbeanstalk-us-east-2-820692509400
-    bucket_path: docker-loginapp
-    access_key-id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
+    bucket_path:  docker-loginapp
     on:
        all_branches: true
+    access_key-id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    
 
 
