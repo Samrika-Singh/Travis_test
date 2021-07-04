@@ -15,6 +15,7 @@ after_success:
     - docker push samrika26/loginapp
 
 deploy:
+    skip_cleanup: true
     provider: elasticbeanstalk
     region: us-east-2
     app: docker-loginapp
