@@ -20,9 +20,9 @@ deploy:
     app: docker-loginapp
     bucket_name: elasticbeanstalk-us-east-2-820692509400
     bucket_path: docker-loginapp
-    on: 
-       branch: master
     access_key-id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
+    on:
+       all_branches: true
 
 
