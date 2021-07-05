@@ -17,10 +17,10 @@ after_success:
 deploy:
     skip_cleanup: true
     provider: elasticbeanstalk
-    region: us-east-2
-    app: docker-samloginapp
-    bucket_name: elasticbeanstalk-us-east-2-820692509400
-    env: "Dockersamloginapp-env"
+    region: ap-south-1
+    app: docker-loginapp
+    bucket_name: elasticbeanstalk-ap-south-1-820692509400
+    env: "Dockerloginapp-env"
     bucket_path:  docker-loginapp
     
     on:
